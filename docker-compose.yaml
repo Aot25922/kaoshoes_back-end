@@ -3,7 +3,7 @@ services:
   backend:
     container_name: int221-spring
     build: .
-    image: ghcr.io/int221-31-33-43/kaofood_backend:latest
+    image: ghcr.io/int221-31-33-43/kaofood_back-end:latest
     ports:
       - '8081:8081'
     restart: always
