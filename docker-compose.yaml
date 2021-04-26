@@ -9,3 +9,6 @@ services:
     restart: always
     networks:
         - int221-network
+networks:
+    int221-network:
+        driver: bridge
