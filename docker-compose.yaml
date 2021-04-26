@@ -7,8 +7,3 @@ services:
     ports:
       - '8081:8081'
     restart: always
-    networks:
-        - int221-network
-networks:
-    int221-network:
-        driver: bridge
