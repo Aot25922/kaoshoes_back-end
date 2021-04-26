@@ -1,7 +1,7 @@
-name: auto-build
+name: auto-deploy
 on: [push]
 jobs:
-  deploy-dev:
+  deploy-backend:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
