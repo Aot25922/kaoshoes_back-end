@@ -1,2 +1,3 @@
-insert into product(product_id,product_name,description,price,manufacture,image_path,country_id ) values (1, 'Japanese Battleship Yamato', 'Length 375mm. Image shows assembled and painted kit.', 2400, (TO_DATE('17/12/2001', 'DD/MM/YYYY')), 'https://www.tamiya.com/english/products/31113/top.jpg', 1);
-insert into product(product_id,product_name,description,price,manufacture,image_path,country_id ) values (2, 'British Battleship King George V', 'Length 322mm. Image shows assembled and painted kit.', 2200, (TO_DATE('23/04/2001', 'DD/MM/YYYY')), 'https://www.tamiya.com/english/products/77525/top.jpg', 2);
+insert into Category(Cate_Id,Cate_Name) values (1,'food');
+insert into Menu(Menu_Id,Menuname,Descript,Costl,Image_Path,Category_CateId) values (1,'Steak','Nice Meat',200.5,'test',1);
+insert into Menu(Menu_Id,Menuname,Descript,Costl,Image_Path,Category_CateId) values (2,'Curry','Just Curry',300.56,'test2',1);
