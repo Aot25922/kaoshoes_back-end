@@ -1,8 +1,7 @@
 package int221.project.entity;
 
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="Menu")
@@ -19,6 +18,12 @@ public class Menu {
     @ManyToOne
     @JoinColumn(name="category_cateid")
     private Category category;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Menu_has_size",
+            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "Menuid"),
+            inverseJoinColumns = @JoinColumn(name = "size_id",
+                    referencedColumnName = "SizeId"))
+    private List<Size> mysize;
 
     public Menu() {
     }
@@ -73,5 +78,9 @@ public class Menu {
 
     public Category getCategory() {
         return category;
+    }
+
+    public List<Size> getSize() {
+        return mysize;
     }
 }
