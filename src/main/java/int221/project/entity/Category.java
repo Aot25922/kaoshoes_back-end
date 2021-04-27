@@ -10,9 +10,9 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int CateId;
+    private int Cateid;
     @Column(nullable=false)
-    private String CateName;
+    private String Catename;
     @OneToMany(mappedBy = "category")
     private List<Menu> MenuList;
 
@@ -20,23 +20,23 @@ public class Category {
     }
 
     public Category(int cateId, String cateName) {
-        CateId = cateId;
-        CateName = cateName;
+        Cateid = cateId;
+        Catename = cateName;
     }
 
     public int getCateId() {
-        return CateId;
+        return Cateid;
     }
 
     public void setCateId(int cateId) {
-        CateId = cateId;
+        Cateid = cateId;
     }
 
     public String getCateName() {
-        return CateName;
+        return Catename;
     }
 
     public void setCateName(String cateName) {
-        CateName = cateName;
+        Catename = cateName;
     }
 }

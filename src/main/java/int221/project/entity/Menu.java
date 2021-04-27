@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int MenuId;
+    private int Menuid;
     @Column(nullable = false)
     private String Menuname;
     private String Descript;
@@ -24,7 +24,7 @@ public class Menu {
     }
 
     public Menu(int menuId, String menuname, String descript, Double costl, String image_Path) {
-        MenuId = menuId;
+        Menuid = menuId;
         Menuname = menuname;
         Descript = descript;
         Costl = costl;
@@ -32,11 +32,11 @@ public class Menu {
     }
 
     public int getMenuId() {
-        return MenuId;
+        return Menuid;
     }
 
     public void setMenuId(int menuId) {
-        MenuId = menuId;
+        Menuid = menuId;
     }
 
     public String getMenuname() {
