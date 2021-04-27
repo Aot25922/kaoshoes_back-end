@@ -1,11 +1,13 @@
-package int221.project;
+package sit.int221.kaofood;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Int221ProjetcApplication {
+public class KaofoodSpringApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(Int221ProjetcApplication.class, args);
+        SpringApplication.run(KaofoodSpringApplication.class, args);
     }
+
 }

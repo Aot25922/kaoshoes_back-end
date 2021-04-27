@@ -1,12 +1,13 @@
-package int221.project.controller;
+package sit.int221.kaofood.controller;
 
 
-import int221.project.entity.Menu;
-import int221.project.repositories.MenuRepository;
+import sit.int221.kaofood.entity.Menu;
+import sit.int221.kaofood.repositories.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin
 @RestController
 public class MenuController {

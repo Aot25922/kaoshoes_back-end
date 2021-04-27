@@ -1,4 +1,4 @@
-package int221.project.entity;
+package sit.int221.kaofood.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class product {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int product_id;
@@ -18,10 +18,10 @@ public class product {
     private String image_path;
     private int country_id;
 
-    public product(){
+    public Product(){
 
     }
-    public product(int product_id, String product_name, String description, int price, Date manufacture, String image_path, int country_id) {
+    public Product(int product_id, String product_name, String description, int price, Date manufacture, String image_path, int country_id) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.description = description;

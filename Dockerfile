@@ -5,4 +5,4 @@ COPY . /mysrc
 RUN mvn clean package
 RUN apk del maven
 EXPOSE 80
-ENTRYPOINT ["java","-jar","/mysrc/target/int221-project-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/mysrc/target/sit-int221-kaofood-0.0.1-SNAPSHOT.jar"]
