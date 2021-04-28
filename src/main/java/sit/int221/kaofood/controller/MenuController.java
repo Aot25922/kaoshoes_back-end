@@ -12,19 +12,19 @@ import java.util.List;
 @RestController
 public class MenuController {
     @Autowired
-    MenuRepository menuRepository;
+    private MenuRepository menuRepository;
 
-    @GetMapping("/Menu")
+    @GetMapping("/menu")
     public List<Menu> showAllMenu(){
         return menuRepository.findAll();
     }
 
-    @GetMapping("/Menu/{id}")
+    @GetMapping("/menu/{id}")
     public Menu showMenu(@PathVariable int id){
         return menuRepository.findById(id).orElse(null);
     }
 
-    @RequestMapping("/Menu/my/{id}")
+    @RequestMapping("/menu/my/{id}")
     public void deleteMenu(@PathVariable  int id) {
         menuRepository.deleteById(id);
     }

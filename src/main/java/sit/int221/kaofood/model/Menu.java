@@ -4,76 +4,73 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Menu")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Menuid;
-    @Column(nullable = false)
-    private String Menuname;
-    private String Descript;
-    @Column(nullable = false)
-    private Double Costl;
-    private String Image_Path;
+    private int menuId;
+    private String menuName;
+    private String descript;
+    private Double cost;
+    private String imagePath;
     @ManyToOne
-    @JoinColumn(name="category_cateid")
+    @JoinColumn(name="CateId")
     private Category category;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "Menu_has_size",
-            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "Menuid"),
-            inverseJoinColumns = @JoinColumn(name = "size_id",
-                    referencedColumnName = "SizeId"))
-    private List<Size> mysize;
+    @ManyToMany
+    @JoinTable(
+            name = "Menu_has_Size",
+            joinColumns = @JoinColumn(name = "MenuId"),
+            inverseJoinColumns = @JoinColumn(name = "SizeId"))
+    private List<Size> size;
 
     public Menu() {
     }
 
-    public Menu(int menuId, String menuname, String descript, Double costl, String image_Path) {
-        Menuid = menuId;
-        Menuname = menuname;
-        Descript = descript;
-        Costl = costl;
-        Image_Path = image_Path;
+    public Menu(int menuId, String menuName, String descript, Double cost, String image_Path) {
+        this.menuId = menuId;
+        this.menuName = menuName;
+        this.descript = descript;
+        this.cost = cost;
+        imagePath = image_Path;
     }
 
     public int getMenuId() {
-        return Menuid;
+        return menuId;
     }
 
     public void setMenuId(int menuId) {
-        Menuid = menuId;
+        this.menuId = menuId;
     }
 
-    public String getMenuname() {
-        return Menuname;
+    public String getMenuName() {
+        return menuName;
     }
 
-    public void setMenuname(String menuname) {
-        Menuname = menuname;
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
     }
 
     public String getDescript() {
-        return Descript;
+        return descript;
     }
 
     public void setDescript(String descript) {
-        Descript = descript;
+        this.descript = descript;
     }
 
-    public Double getCostl() {
-        return Costl;
+    public Double getCost() {
+        return cost;
     }
 
-    public void setCostl(Double costl) {
-        Costl = costl;
+    public void setCost(Double cost) {
+        this.cost = cost;
     }
 
-    public String getImage_Path() {
-        return Image_Path;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage_Path(String image_Path) {
-        Image_Path = image_Path;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Category getCategory() {
@@ -81,6 +78,6 @@ public class Menu {
     }
 
     public List<Size> getSize() {
-        return mysize;
+        return size;
     }
 }

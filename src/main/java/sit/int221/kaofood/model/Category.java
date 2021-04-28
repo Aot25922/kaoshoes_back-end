@@ -1,40 +1,34 @@
 package sit.int221.kaofood.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name="Category")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Cateid;
-    @Column(nullable=false)
-    private String Catename;
-    @OneToMany(mappedBy = "category")
-    private List<Menu> MenuList;
+    private int cateId;
+    private String cateName;
 
     public Category() {
     }
 
     public Category(int cateId, String cateName) {
-        Cateid = cateId;
-        Catename = cateName;
+        this.cateId = cateId;
+        this.cateName = cateName;
     }
 
     public int getCateId() {
-        return Cateid;
+        return cateId;
     }
 
     public void setCateId(int cateId) {
-        Cateid = cateId;
+        this.cateId = cateId;
     }
 
     public String getCateName() {
-        return Catename;
+        return cateName;
     }
 
     public void setCateName(String cateName) {
-        Catename = cateName;
+        this.cateName = cateName;
     }
 }

@@ -1,41 +1,35 @@
 package sit.int221.kaofood.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name="Sizes")
 public class Size {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Sizeid;
-    @Column(nullable = false)
-    private Character Sizename;
-    @ManyToMany(mappedBy = "mysize")
-    private List<Menu> MenuList;
+    private int sizeId;
+    private String sizeValue;
 
-    public Size(int sizeid, Character size) {
-        Sizeid = sizeid;
-        Sizename = size;
+    public Size(int id, String value) {
+        this.sizeId = id;
+        this.sizeValue = value;
     }
 
     public Size() {
     }
 
-    public int getSizeid() {
-        return Sizeid;
+    public int getSizeId() {
+        return sizeId;
     }
 
-    public void setSizeid(int sizeid) {
-        Sizeid = sizeid;
+    public void setSizeId(int id) {
+        this.sizeId = id;
     }
 
-    public Character getSize() {
-        return Sizename;
+    public String getSize() {
+        return sizeValue;
     }
 
-    public void setSize(Character size) {
-        Sizename = size;
+    public void setSize(String value) {
+        sizeValue = value;
     }
 
 
