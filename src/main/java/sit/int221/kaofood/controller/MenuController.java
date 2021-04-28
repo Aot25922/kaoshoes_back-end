@@ -1,7 +1,7 @@
 package sit.int221.kaofood.controller;
 
 
-import sit.int221.kaofood.entity.Menu;
+import sit.int221.kaofood.model.Menu;
 import sit.int221.kaofood.repositories.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

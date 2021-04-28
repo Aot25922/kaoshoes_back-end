@@ -1,4 +1,4 @@
-package sit.int221.kaofood.entity;
+package sit.int221.kaofood.model;
 
 import javax.persistence.*;
 import java.util.List;
