@@ -24,13 +24,18 @@ public class MenuController {
         return menuRepository.findById(id).orElse(null);
     }
 
-    @RequestMapping("/menu/my/{id}")
-    public void deleteMenu(@PathVariable  int id) {
-        menuRepository.deleteById(id);
+    @PostMapping("/menu/")
+    public void addMenu(@RequestBody Menu menu){
+        menuRepository.save(menu);
     }
 
-    @RequestMapping("/menu/add")
-    public void addMenu(Menu menu){
-        menuRepository.save(menu);
+    @PutMapping("")
+    public void updateMenu(@RequestBody Menu menu){
+
+    }
+
+    @DeleteMapping("/menu/{id}")
+    public void deleteMenu(@PathVariable  int id) {
+        menuRepository.deleteById(id);
     }
 }
