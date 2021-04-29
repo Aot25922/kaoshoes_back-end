@@ -9,8 +9,7 @@ public class Size {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sizeId;
     private String sizeValue;
-
-    @ManyToMany(mappedBy = "mysize")
+    @ManyToMany(mappedBy = "sizeList")
     private List<Menu> MenuList;
 
     public Size(int id, String value) {

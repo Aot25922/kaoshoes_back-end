@@ -34,7 +34,7 @@ public class Menu {
         imagePath = image_Path;
         this.category=category;
         this.price=price;
-        this.sizeList = sizeList;
+        this.sizeList=sizeList;
     }
 
     public List<Size> getSizeList() {
@@ -95,9 +95,5 @@ public class Menu {
 
     public Category getCategory() {
         return category;
-    }
-
-    public List<Size> getSize() {
-        return sizeList;
     }
 }
