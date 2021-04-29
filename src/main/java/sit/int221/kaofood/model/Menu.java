@@ -7,6 +7,7 @@ import java.util.List;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MenuId", unique = true, nullable = false)
     private int menuId;
     private String menuName;
     private String descript;
@@ -20,7 +21,7 @@ public class Menu {
             name = "Menu_has_Size",
             joinColumns = @JoinColumn(name = "MenuId"),
             inverseJoinColumns = @JoinColumn(name = "SizeId"))
-    private List<Size> size;
+    private List<Size> mysize;
 
     public Menu() {
     }
@@ -78,6 +79,6 @@ public class Menu {
     }
 
     public List<Size> getSize() {
-        return size;
+        return mysize;
     }
 }

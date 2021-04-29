@@ -1,12 +1,16 @@
 package sit.int221.kaofood.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int cateId;
     private String cateName;
+    @OneToMany(mappedBy = "category")
+    private List<Menu> MenuList;
 
     public Category() {
     }

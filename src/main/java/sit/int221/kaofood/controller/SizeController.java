@@ -7,7 +7,7 @@ import sit.int221.kaofood.model.Size;
 import sit.int221.kaofood.repositories.SizeRepository;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class SizeController {
     @Autowired

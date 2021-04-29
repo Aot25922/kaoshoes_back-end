@@ -1,12 +1,17 @@
 package sit.int221.kaofood.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Size {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int sizeId;
     private String sizeValue;
+
+    @ManyToMany(mappedBy = "mysize")
+    private List<Menu> MenuList;
 
     public Size(int id, String value) {
         this.sizeId = id;

@@ -28,4 +28,9 @@ public class MenuController {
     public void deleteMenu(@PathVariable  int id) {
         menuRepository.deleteById(id);
     }
+
+    @RequestMapping("/menu/add")
+    public void addMenu(Menu menu){
+        menuRepository.save(menu);
+    }
 }
