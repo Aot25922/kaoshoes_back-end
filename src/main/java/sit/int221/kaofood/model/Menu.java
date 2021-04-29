@@ -7,11 +7,11 @@ import java.util.List;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MenuId")
     private int MenuId;
     private String menuName;
     private String descript;
     private Double cost;
+    private Double price;
     private String imagePath;
     @ManyToOne
     @JoinColumn(name="CateId")
@@ -26,13 +26,31 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(int menuId,String menuName, String descript, Double cost, String image_Path,Category category) {
+    public Menu(int menuId,String menuName,Double price, String descript, Double cost, String image_Path,Category category,List<Size> mysize) {
         this.MenuId=menuId;
         this.menuName = menuName;
         this.descript = descript;
         this.cost = cost;
         imagePath = image_Path;
         this.category=category;
+        this.price=price;
+        this.mysize=mysize;
+    }
+
+    public List<Size> getMysize() {
+        return mysize;
+    }
+
+    public void setMysize(List<Size> mysize) {
+        this.mysize = mysize;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public int getMenuId() {

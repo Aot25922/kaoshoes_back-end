@@ -12,22 +12,23 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/menu")
 public class MenuController {
     @Autowired
     private MenuRepository menuRepository;
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @GetMapping("/menu")
+    @GetMapping("")
     public List<Menu> showAllMenu(){
         return menuRepository.findAll();
     }
 
-    @GetMapping("/menu/{id}")
+    @GetMapping("/{id}")
     public Menu showMenu(@PathVariable int id){
         return menuRepository.findById(id).orElse(null);
     }
 
-    @RequestMapping("/menu/add")
+    @PostMapping ("")
     public void addMenu(@RequestParam String menu){
         Menu mymenu = null;
         try {
@@ -43,7 +44,7 @@ public class MenuController {
 
     }
 
-    @DeleteMapping("/menu/{id}")
+    @DeleteMapping("/{id}")
     public void deleteMenu(@PathVariable  int id) {
         menuRepository.deleteById(id);
     }
