@@ -6,9 +6,9 @@ import java.util.List;
 @Entity
 public class Menu {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "MenuId", unique = true, nullable = false)
-    private int menuId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MenuId")
+    private int MenuId;
     private String menuName;
     private String descript;
     private Double cost;
@@ -26,20 +26,21 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(int menuId, String menuName, String descript, Double cost, String image_Path) {
-        this.menuId = menuId;
+    public Menu(int menuId,String menuName, String descript, Double cost, String image_Path,Category category) {
+        this.MenuId=menuId;
         this.menuName = menuName;
         this.descript = descript;
         this.cost = cost;
         imagePath = image_Path;
+        this.category=category;
     }
 
     public int getMenuId() {
-        return menuId;
+        return MenuId;
     }
 
     public void setMenuId(int menuId) {
-        this.menuId = menuId;
+        this.MenuId = menuId;
     }
 
     public String getMenuName() {
