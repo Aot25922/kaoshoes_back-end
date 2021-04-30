@@ -2,9 +2,7 @@ package sit.int221.kaofood.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sit.int221.kaofood.model.Category;
 import sit.int221.kaofood.repositories.CategoryRepository;
 
@@ -19,5 +17,10 @@ public class CategoryController {
     @GetMapping("/category")
     public List<Category> showSize(){
         return categoryRepository.findAll();
+    }
+
+    @PostMapping("/category/add")
+    public void Add(@RequestBody  Category category){
+        categoryRepository.save(category);
     }
 }
