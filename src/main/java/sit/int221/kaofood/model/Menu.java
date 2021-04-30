@@ -21,12 +21,12 @@ public class Menu {
             name = "Menu_has_Size",
             joinColumns = @JoinColumn(name = "MenuId"),
             inverseJoinColumns = @JoinColumn(name = "SizeId"))
-    private List<Size> mysize;
+    private List<Size> sizeList;
 
     public Menu() {
     }
 
-    public Menu(int menuId,String menuName,Double price, String descript, Double cost, String image_Path,Category category,List<Size> mysize) {
+    public Menu(int menuId,String menuName,Double price, String descript, Double cost, String image_Path,Category category,List<Size> sizeList) {
         this.MenuId=menuId;
         this.menuName = menuName;
         this.descript = descript;
@@ -34,15 +34,15 @@ public class Menu {
         imagePath = image_Path;
         this.category=category;
         this.price=price;
-        this.mysize=mysize;
+        this.sizeList=sizeList;
     }
 
-    public List<Size> getMysize() {
-        return mysize;
+    public List<Size> getSizeList() {
+        return sizeList;
     }
 
-    public void setMysize(List<Size> mysize) {
-        this.mysize = mysize;
+    public void setSizeList(List<Size> sizeList) {
+        this.sizeList = sizeList;
     }
 
     public Double getPrice() {
@@ -95,9 +95,5 @@ public class Menu {
 
     public Category getCategory() {
         return category;
-    }
-
-    public List<Size> getSize() {
-        return mysize;
     }
 }
