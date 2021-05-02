@@ -51,6 +51,9 @@ public class MenuController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        if((menuRepository.findMenuByMenuName(mymenu.getMenuName())).equals(mymenu)){
+            return;
+        }
         String type;
         try{
             String oldname = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -58,9 +61,9 @@ public class MenuController {
         }
         catch (Exception e){ type=".png";}
         String fileName = mymenu.getMenuName()+type;;
-        mymenu.setImagePath(fileName);
-//        String uploadDir = "src/main/resources/image/";
-        Path uploadPath = Paths.get("src/main/resources/image/");
+        String uploadDir="target/classes/image/"+mymenu.getCategory().getCateName()+"/";
+        mymenu.setImagePath(uploadDir+fileName);
+        Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
@@ -76,13 +79,9 @@ public class MenuController {
 
     @GetMapping("/get/{image}")
     public ResponseEntity<InputStreamResource> showImage(@PathVariable String image) throws IOException {
-        Menu menu = null;
-        for(Menu find : menuRepository.findMenuByMenuName(image)){
-            if(find.getImagePath().replaceFirst("[.][^.]+$", "").equals(find.getMenuName())){
-                menu=find;
-            }
-        }
-        var imgFile = new ClassPathResource("image/"+ menu.getImagePath());
+        List<Menu> menu = menuRepository.findMenuByMenuName(image);
+        String imagePath = menu.get(0).getImagePath().substring(menu.get(0).getImagePath().lastIndexOf("/image/"));
+        var imgFile = new ClassPathResource(imagePath);
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.IMAGE_JPEG)
@@ -90,9 +89,47 @@ public class MenuController {
     }
 
 
-    @PutMapping("")
-    public void updateMenu(@RequestBody Menu menu){
+    @PutMapping("/{id}")
+    public void updateMenu(@PathVariable(value = "id") int Id,@RequestParam String menu,@RequestParam MultipartFile multipartFile)throws IOException{
+       Menu editMenu = menuRepository.findById(Id).orElse(null);
+       Menu mymenu = null;
+        try {
+            mymenu = objectMapper.readValue(menu, Menu.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        editMenu.setMenuName(mymenu.getMenuName());
+        editMenu.setCost(mymenu.getCost());
+        editMenu.setPrice(mymenu.getPrice());
+        editMenu.setDescript(mymenu.getDescript());
+        editMenu.setCategory(mymenu.getCategory());
+        editMenu.setSizeList(mymenu.getSizeList());
+        if(!(editMenu.getImagePath().equals(mymenu.getImagePath()))){
+            String type;
+            try{
+                String oldname = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                type = oldname.substring(oldname.lastIndexOf("."));
+            }
+            catch (Exception e){ type=".png";}
+            String fileName = mymenu.getMenuName()+type;;
+            String uploadDir="target/classes/image/"+mymenu.getCategory().getCateName()+"/";
+            editMenu.setImagePath(uploadDir+fileName);
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
 
+            try (InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioe) {
+                throw new IOException("Could not save image file: " + fileName, ioe);
+            }
+
+        }else{
+            editMenu.setImagePath(mymenu.getImagePath());
+        }
+        menuRepository.save(editMenu);
     }
 
     @DeleteMapping("/{id}")
