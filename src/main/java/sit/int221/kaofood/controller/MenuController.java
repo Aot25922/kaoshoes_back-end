@@ -90,7 +90,7 @@ public class MenuController {
 
 
     @PutMapping("/{id}")
-    public void updateMenu(@PathVariable(value = "id") int Id,@RequestParam String menu,@RequestParam MultipartFile multipartFile)throws IOException{
+    public void updateMenu(@PathVariable(value = "id") int Id,@RequestParam String menu)throws IOException{
        Menu editMenu = menuRepository.findById(Id).orElse(null);
        Menu mymenu = null;
         try {
@@ -104,15 +104,20 @@ public class MenuController {
         editMenu.setDescript(mymenu.getDescript());
         editMenu.setCategory(mymenu.getCategory());
         editMenu.setSizeList(mymenu.getSizeList());
-        if(!(editMenu.getImagePath().equals(mymenu.getImagePath()))){
+        menuRepository.save(editMenu);
+    }
+
+    @PutMapping("/image/{id}")
+    public void updateImage(@PathVariable(value = "id") int Id,@RequestParam MultipartFile multipartFile)throws IOException{
+        Menu editMenu = menuRepository.findById(Id).orElse(null);
             String type;
             try{
                 String oldname = StringUtils.cleanPath(multipartFile.getOriginalFilename());
                 type = oldname.substring(oldname.lastIndexOf("."));
             }
             catch (Exception e){ type=".png";}
-            String fileName = mymenu.getMenuName()+type;;
-            String uploadDir="target/classes/image/"+mymenu.getCategory().getCateName()+"/";
+            String fileName = editMenu.getMenuName()+type;;
+            String uploadDir="target/classes/image/"+editMenu.getCategory().getCateName()+"/";
             editMenu.setImagePath(uploadDir+fileName);
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)) {
@@ -126,9 +131,7 @@ public class MenuController {
                 throw new IOException("Could not save image file: " + fileName, ioe);
             }
 
-        }else{
-            editMenu.setImagePath(mymenu.getImagePath());
-        }
+
         menuRepository.save(editMenu);
     }
 
