@@ -94,6 +94,9 @@ public class Product {
         this.brand = brand;
     }
 
+    public List<Size> getSizeList() {
+        return sizeList;
+    }
 
     public void setSizeList(List<Size> sizeList) {
         this.sizeList = sizeList;

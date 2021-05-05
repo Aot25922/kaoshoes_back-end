@@ -26,7 +26,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/product")
-public class MenuController {
+public class ProductController {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
