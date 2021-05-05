@@ -7,58 +7,37 @@ import java.util.List;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int MenuId;
+    private int menuId;
     private String menuName;
     private String descript;
     private Double cost;
-    private Double price;
     private String imagePath;
     @ManyToOne
     @JoinColumn(name="CateId")
     private Category category;
-    @ManyToMany
-    @JoinTable(
-            name = "Menu_has_Size",
-            joinColumns = @JoinColumn(name = "MenuId"),
-            inverseJoinColumns = @JoinColumn(name = "SizeId"))
-    private List<Size> sizeList;
+    @OneToMany(mappedBy = "menu",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Menu_has_Size> menuSize;
 
     public Menu() {
     }
 
-    public Menu(int menuId,String menuName,Double price, String descript, Double cost, String image_Path,Category category,List<Size> sizeList) {
-        this.MenuId=menuId;
+    public Menu(int menuId, String menuName, String descript, Double cost, String imagePath, Category category, List<Menu_has_Size> menuSize) {
+        this.menuId = menuId;
         this.menuName = menuName;
         this.descript = descript;
         this.cost = cost;
-        imagePath = image_Path;
-        this.category=category;
-        this.price=price;
-        this.sizeList=sizeList;
+        this.imagePath = imagePath;
+        this.category = category;
+        this.menuSize = menuSize;
     }
 
-    public List<Size> getSizeList() {
-        return sizeList;
-    }
-
-    public void setSizeList(List<Size> sizeList) {
-        this.sizeList = sizeList;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
 
     public int getMenuId() {
-        return MenuId;
+        return menuId;
     }
 
     public void setMenuId(int menuId) {
-        this.MenuId = menuId;
+        this.menuId = menuId;
     }
 
     public String getMenuName() {
@@ -99,5 +78,10 @@ public class Menu {
 
     public Category getCategory() {
         return category;
+    }
+
+
+    public void setMenuSize(List<Menu_has_Size> menusize) {
+        this.menuSize = menusize;
     }
 }

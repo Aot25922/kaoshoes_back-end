@@ -9,12 +9,13 @@ public class Size {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sizeId;
     private String sizeValue;
-    @ManyToMany(mappedBy = "sizeList")
-    private List<Menu> MenuList;
+    @OneToMany(mappedBy = "size",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Menu_has_Size> menuSize;
 
-    public Size(int id, String value) {
-        this.sizeId = id;
-        this.sizeValue = value;
+    public Size(int sizeId, String sizeValue, List<Menu_has_Size> menuSize) {
+        this.sizeId = sizeId;
+        this.sizeValue = sizeValue;
+        this.menuSize = menuSize;
     }
 
     public Size() {
@@ -36,5 +37,19 @@ public class Size {
         sizeValue = value;
     }
 
+    public String getSizeValue() {
+        return sizeValue;
+    }
 
+    public void setSizeValue(String sizeValue) {
+        this.sizeValue = sizeValue;
+    }
+
+    public List<Menu_has_Size> getMenuSize() {
+        return menuSize;
+    }
+
+    public void setMenuSize(List<Menu_has_Size> menusize) {
+        this.menuSize = menusize;
+    }
 }

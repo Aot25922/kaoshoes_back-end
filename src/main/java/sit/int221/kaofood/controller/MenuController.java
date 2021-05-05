@@ -11,10 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import sit.int221.kaofood.model.Menu;
+import sit.int221.kaofood.model.Menu_has_Size;
 import sit.int221.kaofood.repositories.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import sit.int221.kaofood.repositories.MenuSizeRepository;
 
 
 import java.io.IOException;
@@ -31,11 +32,23 @@ import java.util.List;
 public class MenuController {
     @Autowired
     private MenuRepository menuRepository;
+    @Autowired
+    private MenuSizeRepository menuSizeRepository;
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("")
     public List<Menu> showAllMenu(){
         return menuRepository.findAll();
+    }
+
+    @GetMapping("/size")
+    public List<Menu_has_Size> showAllMenuSize(){
+        return menuSizeRepository.findAll();
+    }
+
+    @GetMapping("/size/{id}")
+    public List<Menu_has_Size> showAllMenuSize(@PathVariable int id){
+        return menuSizeRepository.findMenu_has_SizeByMenu_MenuId(id);
     }
 
     @GetMapping("/{id}")
@@ -100,10 +113,8 @@ public class MenuController {
         }
         editMenu.setMenuName(mymenu.getMenuName());
         editMenu.setCost(mymenu.getCost());
-        editMenu.setPrice(mymenu.getPrice());
         editMenu.setDescript(mymenu.getDescript());
         editMenu.setCategory(mymenu.getCategory());
-        editMenu.setSizeList(mymenu.getSizeList());
         menuRepository.save(editMenu);
     }
 
