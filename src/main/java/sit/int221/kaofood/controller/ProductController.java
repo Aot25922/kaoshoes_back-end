@@ -43,14 +43,14 @@ public class ProductController {
     }
 
     @PostMapping ("")
-    public void addMenu(@RequestParam String menu,@RequestParam MultipartFile multipartFile) throws IOException {
-        Product product = null;
+    public void addMenu(@RequestParam String product,@RequestParam MultipartFile multipartFile) throws IOException {
+        Product myproduct = null;
         try {
-            product = objectMapper.readValue(menu, Product.class);
+            myproduct = objectMapper.readValue(product, Product.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        if((productRepository.findMenuByBrand_BrandName(product.getProductName())).equals(product)){
+        if((productRepository.findMenuByBrand_BrandName(myproduct.getProductName())).equals(myproduct)){
             return;
         }
         String type;
@@ -59,9 +59,9 @@ public class ProductController {
         type = oldname.substring(oldname.lastIndexOf("."));
         }
         catch (Exception e){ type=".png";}
-        String fileName = product.getProductName()+type;;
-        String uploadDir="target/classes/image/"+product.getBrand().getBrandName()+"/";
-        product.setImagePath(uploadDir+fileName);
+        String fileName = myproduct.getProductName()+type;;
+        String uploadDir="target/classes/image/"+myproduct.getBrand().getBrandName()+"/";
+        myproduct.setImagePath(uploadDir+fileName);
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
@@ -73,12 +73,12 @@ public class ProductController {
         } catch (IOException ioe) {
             throw new IOException("Could not save image file: " + fileName, ioe);
         }
-        productRepository.save(product);
+        productRepository.save(myproduct);
     }
 
     @GetMapping("/image/{image}")
     public ResponseEntity<InputStreamResource> showImage(@PathVariable String image) throws IOException {
-        List<Product> products = productRepository.findMenuByBrand_BrandName(image);
+        List<Product> products = productRepository.findByProductName(image);
         String imagePath = products.get(0).getImagePath().substring(products.get(0).getImagePath().lastIndexOf("/image/"));
         var imgFile = new ClassPathResource(imagePath);
         return ResponseEntity
@@ -89,19 +89,19 @@ public class ProductController {
 
 
     @PutMapping("/{id}")
-    public void updateMenu(@PathVariable(value = "id") int Id,@RequestParam String menu)throws IOException{
+    public void updateMenu(@PathVariable(value = "id") int Id,@RequestParam String product)throws IOException{
        Product editProduct = productRepository.findById(Id).orElse(null);
-       Product product = null;
+       Product myproduct = null;
         try {
-            product = objectMapper.readValue(menu, Product.class);
+            myproduct = objectMapper.readValue(product, Product.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        editProduct.setProductName(product.getProductName());
-        editProduct.setPrice(product.getPrice());
-        editProduct.setDescript(product.getDescript());
-        editProduct.setManuDate(product.getManuDate());
-        editProduct.setBrand(product.getBrand());
+        editProduct.setProductName(myproduct.getProductName());
+        editProduct.setPrice(myproduct.getPrice());
+        editProduct.setDescript(myproduct.getDescript());
+        editProduct.setManuDate(myproduct.getManuDate());
+        editProduct.setBrand(myproduct.getBrand());
         productRepository.save(editProduct);
     }
 
