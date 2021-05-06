@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>sit.int221</groupId>
-    <artifactId>kaofood</artifactId>
+    <artifactId>kaoshoes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>kaofood-spring</name>
+    <name>kaoshoes-spring</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
