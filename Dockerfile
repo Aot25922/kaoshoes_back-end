@@ -4,5 +4,5 @@ WORKDIR /mysrc
 COPY . /mysrc
 RUN mvn clean package
 RUN apk del maven
-EXPOSE 8080
+EXPOSE 8443
 ENTRYPOINT ["java","-jar","/mysrc/target/kaoshoes-0.0.1-SNAPSHOT.jar"]
