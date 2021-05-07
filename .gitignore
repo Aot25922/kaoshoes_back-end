@@ -1,6 +1,9 @@
 HELP.md
-target/
-!target/**/image
+target/*
+!target/classes/
+target/classes/*
+!target/classes/image/
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
