@@ -102,6 +102,7 @@ public class ProductController {
         editProduct.setDescript(myproduct.getDescript());
         editProduct.setManuDate(myproduct.getManuDate());
         editProduct.setBrand(myproduct.getBrand());
+        editProduct.setSizeList(myproduct.getSizeList());
         productRepository.save(editProduct);
     }
 
