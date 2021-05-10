@@ -11,7 +11,7 @@ import sit.int221.kaofood.repositories.SizeRepository;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RestController
 @RequestMapping("/size")
 public class SizeController {
