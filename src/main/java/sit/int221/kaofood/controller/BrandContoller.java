@@ -10,7 +10,7 @@ import sit.int221.kaofood.repositories.BrandRepository;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/brand")
 public class BrandContoller {
