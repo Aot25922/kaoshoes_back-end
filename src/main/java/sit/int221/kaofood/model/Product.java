@@ -1,6 +1,7 @@
 package sit.int221.kaofood.model;
 
 import javax.persistence.*;
+import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 
