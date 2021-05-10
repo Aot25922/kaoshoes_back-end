@@ -150,6 +150,16 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public void deleteMenu(@PathVariable  int id) {
+        Product editProduct = productRepository.findById(id).orElse(null);
+        File checkFile=new File(editProduct.getImagePath());
+        if(checkFile.exists()) {
+            try {
+                Path oldImgPath = Paths.get(editProduct.getImagePath());
+                Files.delete(oldImgPath);
+            } catch (IOException ioe) {
+                throw new productException(exceptionResponse.ERROR_CODE.ERROR_TO_DELETE_FILE, "Can't delete this file from storage or" + ioe);
+            }
+        }
         productRepository.deleteById(id);
     }
 }
